@@ -44,6 +44,8 @@ public class BetterThanMending {
 		}
 
 		public void init(FMLInitializationEvent e) {
+			MinecraftForge.EVENT_BUS.register(new BTMEventHandler());
+
 		}
 
 		public void postInit(FMLPostInitializationEvent e) {
@@ -61,7 +63,6 @@ public class BetterThanMending {
 		@Override
 		public void init(FMLInitializationEvent e) {
 			super.init(e);
-			MinecraftForge.EVENT_BUS.register(new BTMEventHandler());
 
 		}
 	}

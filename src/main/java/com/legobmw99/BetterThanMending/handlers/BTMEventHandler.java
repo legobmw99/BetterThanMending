@@ -7,7 +7,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemElytra;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -31,6 +34,18 @@ public class BTMEventHandler {
             		}
             	}
             }
+		}
+	}
+	
+	//Cancel the armor-equip-on-rightclick functionality if conditions for repairing are met instead
+	@SubscribeEvent
+	public void onItemUse(PlayerInteractEvent.RightClickItem event){
+		if(event.getItemStack().getItem() instanceof ItemArmor || event.getItemStack().getItem() instanceof ItemElytra){
+			if(event.getItemStack().isItemDamaged() && EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByLocation("mending"), event.getItemStack()) > 0){
+			if ((Minecraft.getMinecraft().gameSettings.keyBindSneak.isKeyDown())){
+				event.setCanceled(true);
+			}
+			}
 		}
 	}
 }

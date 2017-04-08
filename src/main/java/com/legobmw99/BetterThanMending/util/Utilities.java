@@ -7,6 +7,7 @@ public class Utilities {
 	/*
 	 * This was mostly taken from NotEnoughWands by romelo333
 	 * https://github.com/romelo333/notenoughwands
+	 * Licensed under MIT
 	 * I edited it to reflect the newer values of xp levels 
 	 * Those values were sourced from http://minecraft.gamepedia.com/Experience
 	 * 
