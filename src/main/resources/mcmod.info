@@ -1,0 +1,16 @@
+[
+{
+  "modid": "betterthanmending",
+  "name": "Better Than Mending",
+  "description": "A small tweak to improve Mending",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["legobmw99"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

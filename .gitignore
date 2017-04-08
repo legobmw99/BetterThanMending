@@ -1,5 +1,8 @@
 .gradle
 build/
+eclipse
+build
+.settings
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -63,3 +66,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+*.classpath
+.project
+*.launch
