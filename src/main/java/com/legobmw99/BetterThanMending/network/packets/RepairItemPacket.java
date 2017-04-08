@@ -53,7 +53,7 @@ public class RepairItemPacket implements IMessage {
 					} else {
 						if (player.getHeldItemMainhand() != null) {
 							ItemStack held = player.getHeldItemMainhand();
-							held.setItemDamage(held.getItemDamage() - 2);
+							held.setItemDamage(held.getItemDamage() - 4);
 				            Utilities.addPlayerXP(player, -2);
 
 						}
