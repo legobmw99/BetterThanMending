@@ -3,6 +3,8 @@ build/
 eclipse
 build
 .settings
+run/
+bin/
 
 # Ignore Gradle GUI config
 gradle-app.setting
