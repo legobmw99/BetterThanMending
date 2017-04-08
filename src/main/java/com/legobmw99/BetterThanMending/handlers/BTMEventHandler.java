@@ -21,14 +21,14 @@ public class BTMEventHandler {
 	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
 	public void onClientTick(TickEvent.ClientTickEvent event) {
-		if (event.phase == TickEvent.Phase.END && (!Minecraft.getMinecraft().isGamePaused() && Minecraft.getMinecraft().player != null)) {
-			EntityPlayerSP player = Minecraft.getMinecraft().player;
+		if (event.phase == TickEvent.Phase.END && (!Minecraft.getMinecraft().isGamePaused() && Minecraft.getMinecraft().thePlayer != null)) {
+			EntityPlayerSP player = Minecraft.getMinecraft().thePlayer;
             if ((Minecraft.getMinecraft().gameSettings.keyBindSneak.isKeyDown()) && (Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown())) {
             	if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().isItemEnchanted()){
             		ItemStack held = player.getHeldItemMainhand();
             		if(EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByLocation("mending"), held) > 0){
             			if(player.experienceTotal >= 2 && held.isItemDamaged()){
-        					Networking.network.sendToServer(new RepairItemPacket(Minecraft.getMinecraft().player.getEntityId()));
+        					Networking.network.sendToServer(new RepairItemPacket(Minecraft.getMinecraft().thePlayer.getEntityId()));
         					
             			}
             		}

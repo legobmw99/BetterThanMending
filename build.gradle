@@ -11,7 +11,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 //Only edit below this line, the above code adds and enables the necessary things for Forge to be setup.
 
 
-version = "1.0.0"
+version = "0.9.0"
 group = "common.legobmw99.betterthanmending" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "BetterThanMending"
 
@@ -22,9 +22,9 @@ compileJava {
 }
 
 minecraft {
-    version = "1.11.2-13.20.0.2262"
+    version = "1.10.2-12.18.3.2272"
     runDir = "run"
-    mappings = "snapshot_20161220"
+    mappings = "snapshot_20161111"
     makeObfSourceJar = false 
     replaceIn "Feruchemy.java"
     replace "@VERSION@", project.version
