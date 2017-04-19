@@ -42,7 +42,7 @@ public class BTMEventHandler {
 	public void onItemUse(PlayerInteractEvent.RightClickItem event){
 		if(event.getItemStack().getItem() instanceof ItemArmor || event.getItemStack().getItem() instanceof ItemElytra){
 			if(event.getItemStack().isItemDamaged() && EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByLocation("mending"), event.getItemStack()) > 0){
-			if ((Minecraft.getMinecraft().gameSettings.keyBindSneak.isKeyDown())){
+			if ((event.getEntityPlayer().isSneaking())){
 				event.setCanceled(true);
 			}
 			}
