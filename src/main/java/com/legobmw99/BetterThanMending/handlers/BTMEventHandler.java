@@ -1,6 +1,6 @@
 package com.legobmw99.BetterThanMending.handlers;
 
-import com.legobmw99.BetterThanMending.network.Networking;
+import com.legobmw99.BetterThanMending.BetterThanMending;
 import com.legobmw99.BetterThanMending.network.packets.RepairItemPacket;
 
 import net.minecraft.client.Minecraft;
@@ -28,7 +28,7 @@ public class BTMEventHandler {
             		ItemStack held = player.getHeldItemMainhand();
             		if(EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByLocation("mending"), held) > 0){
             			if(player.experienceTotal >= 2 && held.isItemDamaged()){
-        					Networking.network.sendToServer(new RepairItemPacket(Minecraft.getMinecraft().player.getEntityId()));
+        					BetterThanMending.network.sendToServer(new RepairItemPacket(Minecraft.getMinecraft().player.getEntityId()));
         					
             			}
             		}
