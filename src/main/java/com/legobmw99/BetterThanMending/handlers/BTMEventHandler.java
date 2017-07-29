@@ -28,7 +28,7 @@ public class BTMEventHandler {
             		ItemStack held = player.getHeldItemMainhand();
             		if(EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByLocation("mending"), held) > 0){
             			if(player.experienceTotal >= 2 && held.isItemDamaged()){
-        					BetterThanMending.network.sendToServer(new RepairItemPacket(Minecraft.getMinecraft().player.getEntityId()));
+        					BetterThanMending.network.sendToServer(new RepairItemPacket());
         					
             			}
             		}

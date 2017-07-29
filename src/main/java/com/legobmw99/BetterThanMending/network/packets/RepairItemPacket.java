@@ -20,21 +20,13 @@ public class RepairItemPacket implements IMessage {
 	public RepairItemPacket() {
 	}
 
-	private int entityID;
-
-	public RepairItemPacket(int entityID) {
-		this.entityID = entityID;
-	}
-
 	@Override
 	public void fromBytes(ByteBuf buf) {
-		entityID = ByteBufUtils.readVarInt(buf, 5);
 
 	}
 
 	@Override
 	public void toBytes(ByteBuf buf) {
-		ByteBufUtils.writeVarInt(buf, entityID, 5);
 
 	}
 
@@ -42,21 +34,16 @@ public class RepairItemPacket implements IMessage {
 
 		@Override
 		public IMessage onMessage(final RepairItemPacket message, final MessageContext ctx) {
-			IThreadListener mainThread = (WorldServer) ctx.getServerHandler().playerEntity.world; 
+			IThreadListener mainThread = (WorldServer) ctx.getServerHandler().playerEntity.world;
 			mainThread.addScheduledTask(new Runnable() {
 				@Override
 				public void run() {
-					EntityPlayerMP player = (EntityPlayerMP) ctx.getServerHandler().playerEntity.world
-							.getEntityByID(message.entityID);
-					if (player == null) {
-						return;
-					} else {
-						if (player.getHeldItemMainhand() != null) {
-							ItemStack held = player.getHeldItemMainhand();
-							held.setItemDamage(held.getItemDamage() - 4);
-				            Utilities.addPlayerXP(player, -2);
+					EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+					if (player.getHeldItemMainhand() != null) {
+						ItemStack held = player.getHeldItemMainhand();
+						held.setItemDamage(held.getItemDamage() - 4);
+						Utilities.addPlayerXP(player, -2);
 
-						}
 					}
 				}
 			});
