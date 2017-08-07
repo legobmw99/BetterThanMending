@@ -4,6 +4,6 @@ BetterThanMending 1.1.1
 
 A simple mod to improve Mending, allowing you to repair items by shift-right clicking and draining experience
 
-This mod is currently updated for `Minecraft 1.12` and `Forge 14.21.0.2321`
+This mod is currently updated for `Minecraft 1.12.1` and `Forge 14.22.0.2446`
 
 Please verify and report any issues!
