@@ -34,11 +34,11 @@ public class RepairItemPacket implements IMessage {
 
 		@Override
 		public IMessage onMessage(final RepairItemPacket message, final MessageContext ctx) {
-			IThreadListener mainThread = (WorldServer) ctx.getServerHandler().playerEntity.world;
+			IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
 			mainThread.addScheduledTask(new Runnable() {
 				@Override
 				public void run() {
-					EntityPlayerMP player = ctx.getServerHandler().playerEntity;
+					EntityPlayerMP player = ctx.getServerHandler().player;
 					if (player.getHeldItemMainhand() != null) {
 						ItemStack held = player.getHeldItemMainhand();
 						held.setItemDamage(held.getItemDamage() - 4);
