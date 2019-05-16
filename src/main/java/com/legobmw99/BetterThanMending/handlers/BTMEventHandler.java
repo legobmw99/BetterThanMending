@@ -11,24 +11,22 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemElytra;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BTMEventHandler {
 
-	@SideOnly(Side.CLIENT)
 	@SubscribeEvent
-	public void onClientTick(TickEvent.ClientTickEvent event) {
-		if (event.phase == TickEvent.Phase.END && (!Minecraft.getMinecraft().isGamePaused() && Minecraft.getMinecraft().player != null)) {
-			EntityPlayerSP player = Minecraft.getMinecraft().player;
-            if ((Minecraft.getMinecraft().gameSettings.keyBindSneak.isKeyDown()) && (Minecraft.getMinecraft().gameSettings.keyBindUseItem.isKeyDown())) {
-            	if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().isItemEnchanted()){
+	public void onClientTick(final TickEvent.ClientTickEvent event) {
+		System.out.println("working 1");
+		if (event.phase == TickEvent.Phase.END && (!Minecraft.getInstance().isGamePaused() && Minecraft.getInstance().player != null)) {
+			EntityPlayerSP player = Minecraft.getInstance().player;
+            if ((Minecraft.getInstance().gameSettings.keyBindSneak.isKeyDown()) && (Minecraft.getInstance().gameSettings.keyBindUseItem.isKeyDown())) {
+            	if(player.getHeldItemMainhand() != null && player.getHeldItemMainhand().isEnchanted()){
             		ItemStack held = player.getHeldItemMainhand();
-            		if(EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByLocation("mending"), held) > 0){
-            			if(((player.experienceTotal >= 2) || (player.experienceLevel > 0)) && held.isItemDamaged()){
-        					BetterThanMending.network.sendToServer(new RepairItemPacket());
+            		if(EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByID(26), held) > 0){
+            			if(((player.experienceTotal >= 2) || (player.experienceLevel > 0)) && held.isDamaged()){
+        					BetterThanMending.NETWORK.sendToServer(new RepairItemPacket());
         					
             			}
             		}
@@ -39,9 +37,10 @@ public class BTMEventHandler {
 	
 	//Cancel the armor-equip-on-rightclick functionality if conditions for repairing are met instead
 	@SubscribeEvent
-	public void onItemUse(PlayerInteractEvent.RightClickItem event){
+	public void onItemUse(final PlayerInteractEvent.RightClickItem event){
+		System.out.println("working 5");
 		if(event.getItemStack().getItem() instanceof ItemArmor || event.getItemStack().getItem() instanceof ItemElytra){
-			if(event.getItemStack().isItemDamaged() && EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByLocation("mending"), event.getItemStack()) > 0){
+			if(event.getItemStack().isDamaged() && EnchantmentHelper.getEnchantmentLevel(Enchantment.getEnchantmentByID(26), event.getItemStack()) > 0){
 				if ((event.getEntityPlayer().isSneaking())){
 					event.setCanceled(true);
 				}

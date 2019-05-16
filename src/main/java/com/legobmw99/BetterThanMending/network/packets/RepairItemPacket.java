@@ -1,53 +1,48 @@
 package com.legobmw99.BetterThanMending.network.packets;
 
+import java.util.function.Supplier;
+
 import com.legobmw99.BetterThanMending.util.Utilities;
 
-import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.InventoryEnderChest;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IThreadListener;
-import net.minecraft.world.WorldServer;
-import net.minecraftforge.fml.common.network.ByteBufUtils;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.server.MinecraftServer;
+import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraftforge.fml.server.ServerLifecycleHooks;
 
-public class RepairItemPacket implements IMessage {
+public class RepairItemPacket {
 
 	public RepairItemPacket() {
+		
 	}
 
-	@Override
-	public void fromBytes(ByteBuf buf) {
 
-	}
+    public static RepairItemPacket read(PacketBuffer buffer) {
+		return null;
+    }
 
-	@Override
-	public void toBytes(ByteBuf buf) {
+    public static void write(RepairItemPacket message, PacketBuffer buffer) {
+    	
+    }
 
-	}
+	public static class Handler{
 
-	public static class Handler implements IMessageHandler<RepairItemPacket, IMessage> {
+		public static void onMessage(final RepairItemPacket message, Supplier<NetworkEvent.Context> context) {
+            final MinecraftServer server = ServerLifecycleHooks.getCurrentServer();
+            if (server == null)
+                return;
 
-		@Override
-		public IMessage onMessage(final RepairItemPacket message, final MessageContext ctx) {
-			IThreadListener mainThread = (WorldServer) ctx.getServerHandler().player.world;
-			mainThread.addScheduledTask(new Runnable() {
-				@Override
-				public void run() {
-					EntityPlayerMP player = ctx.getServerHandler().player;
-					if (player.getHeldItemMainhand() != null) {
-						ItemStack held = player.getHeldItemMainhand();
-						held.setItemDamage(held.getItemDamage() - 4);
-						Utilities.addPlayerXP(player, -2);
+            server.addScheduledTask(() -> {
+				EntityPlayerMP player = context.get().getSender();
+				if (player.getHeldItemMainhand() != null) {
+					ItemStack held = player.getHeldItemMainhand();
+					held.setDamage(held.getDamage() - 4);
+					Utilities.addPlayerXP(player, -2);
 
-					}
 				}
-			});
-			return null;
+            });
+            context.get().setPacketHandled(true);
 		}
 	}
 }

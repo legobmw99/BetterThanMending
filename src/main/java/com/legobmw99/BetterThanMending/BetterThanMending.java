@@ -3,73 +3,62 @@ package com.legobmw99.BetterThanMending;
 import com.legobmw99.BetterThanMending.handlers.BTMEventHandler;
 import com.legobmw99.BetterThanMending.network.packets.RepairItemPacket;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.fml.network.NetworkRegistry;
+import net.minecraftforge.fml.network.simple.SimpleChannel;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
-@Mod(modid = BetterThanMending.MODID, version = BetterThanMending.VERSION)
+
+
+@Mod(BetterThanMending.MODID)
 public class BetterThanMending {
 	public static final String MODID = "betterthanmending";
 	public static final String VERSION = "@VERSION@";
 	
-	public static SimpleNetworkWrapper network;
-
-	@Instance(value = "betterthanmending")
+    public static final SimpleChannel NETWORK = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(MODID, "networking"))
+            .clientAcceptedVersions(s -> true)
+            .serverAcceptedVersions(s -> true)
+            .networkProtocolVersion(() -> "1.0.0")
+            .simpleChannel();
+    
 	public static BetterThanMending instance;
 
-	@SidedProxy
-	public static CommonProxy proxy;
+	public static CommonProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
+	
+	public BetterThanMending() {
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::preInit);
+		MinecraftForge.EVENT_BUS.register(this);
 
-	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
+	}
+
+	@SubscribeEvent
+	public void preInit(final FMLCommonSetupEvent event) {
 		proxy.preInit(event);
 	}
 
-	@Mod.EventHandler
-	public void init(FMLInitializationEvent e) {
-		proxy.init(e);
-	}
-
-	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent e) {
-		proxy.postInit(e);
-	}
 
 	public static class CommonProxy {
-		public void preInit(FMLPreInitializationEvent e) {
-			network = NetworkRegistry.INSTANCE.newSimpleChannel("btm");
-			network.registerMessage(RepairItemPacket.Handler.class, RepairItemPacket.class, 0, Side.SERVER);
-		}
-
-		public void init(FMLInitializationEvent e) {
+		public void preInit(final FMLCommonSetupEvent e) {
+			NETWORK.registerMessage(0, RepairItemPacket.class, RepairItemPacket::write, RepairItemPacket::read, RepairItemPacket.Handler::OnMessage);
 			MinecraftForge.EVENT_BUS.register(new BTMEventHandler());
 
 		}
-
-		public void postInit(FMLPostInitializationEvent e) {
-
-		}
+		
+		
 	}
 
 	public static class ClientProxy extends CommonProxy {
 		@Override
-		public void preInit(FMLPreInitializationEvent e) {
+		public void preInit(final FMLCommonSetupEvent e) {
 			super.preInit(e);
 
 		}
 
-		@Override
-		public void init(FMLInitializationEvent e) {
-			super.init(e);
-
-		}
 	}
 
 	public static class ServerProxy extends CommonProxy {
