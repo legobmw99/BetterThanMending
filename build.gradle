@@ -43,7 +43,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                betterthanmending {
                     source sourceSets.main
                 }
             }
@@ -59,7 +59,7 @@ minecraft {
             property 'forge.logging.console.level', 'debug'
 
             mods {
-                examplemod {
+                betterthanmending {
                     source sourceSets.main
                 }
             }

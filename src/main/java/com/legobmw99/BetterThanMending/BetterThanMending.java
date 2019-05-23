@@ -18,7 +18,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 @Mod(BetterThanMending.MODID)
 public class BetterThanMending {
 	public static final String MODID = "betterthanmending";
-	public static final String VERSION = "@VERSION@";
 	
     public static final SimpleChannel NETWORK = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(MODID, "networking"))
             .clientAcceptedVersions(s -> true)
@@ -31,6 +30,8 @@ public class BetterThanMending {
 	public static CommonProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 	
 	public BetterThanMending() {
+
+		instance = this;
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::preInit);
 		MinecraftForge.EVENT_BUS.register(this);
 
