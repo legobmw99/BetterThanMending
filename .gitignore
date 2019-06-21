@@ -3,6 +3,7 @@ build/
 eclipse
 build
 .settings
+.idea
 run/
 bin/
 
