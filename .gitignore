@@ -4,6 +4,7 @@ eclipse
 build
 .settings
 .idea
+out
 run/
 bin/
 
