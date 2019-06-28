@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "betterthanmending",
+  "version": "${version}",
+  "name": "BetterThanMending",
+  "description": "A mod to improve the mending behavior in vanilla Minecraft, now for Fabric!",
+  "authors": [
+    "legobmw99"
+  ],
+  "contact": {
+    "sources": "https://github.com/legobmw99/BetterThanMending/tree/fabric"
+  },
+  "license": "GPL-3.0",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.legobmw99.BetterThanMending.BetterThanMending"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.4.0",
+    "fabric": "*"
+  },
+  "suggests": {
+    "flamingo": "*"
+  }
+}
