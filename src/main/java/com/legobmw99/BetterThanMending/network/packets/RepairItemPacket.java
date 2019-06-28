@@ -10,10 +10,6 @@ import java.util.function.Supplier;
 
 public class RepairItemPacket {
 
-    public RepairItemPacket() {
-
-    }
-
 
     public static RepairItemPacket read(PacketBuffer buffer) {
         return new RepairItemPacket();
@@ -22,20 +18,16 @@ public class RepairItemPacket {
     public static void write(RepairItemPacket message, PacketBuffer buffer) {
     }
 
-    public static class Handler {
 
-        public static void onMessage(final RepairItemPacket message, Supplier<NetworkEvent.Context> context) {
-            context.get().enqueueWork(() -> {
-                ServerPlayerEntity player = context.get().getSender();
-                System.out.println(player.toString());
-                if (player.getHeldItemMainhand() != null) {
-                    ItemStack held = player.getHeldItemMainhand();
-                    held.setDamage(held.getDamage() - 4);
-                    Utilities.addPlayerXP(player, -2);
-
-                }
-            });
-            context.get().setPacketHandled(true);
-        }
+    public static void onMessage(final RepairItemPacket message, Supplier<NetworkEvent.Context> context) {
+        context.get().enqueueWork(() -> {
+            ServerPlayerEntity player = context.get().getSender();
+            if (!player.getHeldItemMainhand().isEmpty()) {
+                ItemStack held = player.getHeldItemMainhand();
+                held.setDamage(held.getDamage() - 4);
+                Utilities.addPlayerXP(player, -2);
+            }
+        });
+        context.get().setPacketHandled(true);
     }
 }

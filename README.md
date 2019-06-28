@@ -1,4 +1,4 @@
-BetterThanMending 1.2.1
+BetterThanMending 1.3.0
 =========
 [![ CurseForge](http://cf.way2muchnoise.eu/264738.svg)](https://minecraft.curseforge.com/projects/better-than-mending)
 
