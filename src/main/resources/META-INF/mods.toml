@@ -1,7 +1,7 @@
 # The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
 modLoader="javafml" #mandatory
 # A version range to match for said mod loader - for regular FML @Mod it will be the forge version
-loaderVersion="[28,)" #mandatory (26 is current forge version)
+loaderVersion="[26,)" #mandatory (26 is current forge version)
 # A URL to refer people to when problems occur with this mod
 issueTrackerURL="https://github.com/legobmw99/BetterThanMending/issues" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
@@ -23,9 +23,7 @@ displayName="BetterThanMending" #mandatory
 # A text field displayed in the mod UI
 authors="Legobmw99" #optional
 # The description text for the mod (multi line!) (#mandatory)
-description='''
-A mod to improve the mending behavior in vanilla Minecraft
-'''
+description='''A mod to improve the mending behavior in vanilla Minecraft'''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.betterthanmending]] #optional
     # the modid of the dependency
@@ -33,15 +31,8 @@ A mod to improve the mending behavior in vanilla Minecraft
     # Does this dependency have to exist - if not, ordering below must be specified
     mandatory=true #mandatory
     # The version range of the dependency
-    versionRange="[28,)" #mandatory
+    versionRange="[26,)" #mandatory
     # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
     ordering="NONE"
     # Side this dependency is applied on - BOTH, CLIENT or SERVER
-    side="BOTH"
-# Here's another dependency
-[[dependencies.betterthanmending]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.14.4]"
-    ordering="NONE"
     side="BOTH"
