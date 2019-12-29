@@ -10,6 +10,7 @@ import net.minecraft.enchantment.Enchantments;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.PacketByteBuf;
+import net.minecraft.util.TypedActionResult;
 
 public class BetterThanMending implements ModInitializer {
 
@@ -21,13 +22,13 @@ public class BetterThanMending implements ModInitializer {
             ItemStack stack = playerEntity.getStackInHand(hand);
             if (stack.isDamaged() && EnchantmentHelper.getLevel(Enchantments.MENDING, stack) > 0) {
                 if (playerEntity.isSneaking() && ((playerEntity.totalExperience >= 2) || (playerEntity.experienceLevel > 0))) {
-                    ClientSidePacketRegistry.INSTANCE.sendToServer(NetworkHandler.REPAIR_ITEM, new PacketByteBuf(Unpooled.buffer()));
-                    return ActionResult.FAIL;
+                    //ClientSidePacketRegistry.INSTANCE.sendToServer(NetworkHandler.REPAIR_ITEM, new PacketByteBuf(Unpooled.buffer()));
+
+                    return TypedActionResult.fail(stack);
                 }
             }
 
-
-            return ActionResult.PASS;
+            return TypedActionResult.pass(stack);
         });
     }
 }
