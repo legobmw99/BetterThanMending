@@ -34,7 +34,7 @@ public class BetterThanMending {
 
         if (!player.world.isRemote()) {
             if (stack.isDamaged() && EnchantmentHelper.getEnchantmentLevel(Enchantments.MENDING, stack) > 0) {
-                if (player.isSneaking() && ((player.experienceTotal >= 2) || (player.experienceLevel > 0))) {
+                if (player.isCrouching() && ((player.experienceTotal >= 2) || (player.experienceLevel > 0))) {
                     stack.setDamage(stack.getDamage() - 4);
                     Utilities.addPlayerXP(player, -2);
                     event.setCanceled(true);
