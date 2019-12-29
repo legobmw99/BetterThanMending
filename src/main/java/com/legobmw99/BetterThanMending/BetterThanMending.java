@@ -22,13 +22,13 @@ public class BetterThanMending implements ModInitializer {
             ItemStack stack = playerEntity.getStackInHand(hand);
             if (stack.isDamaged() && EnchantmentHelper.getLevel(Enchantments.MENDING, stack) > 0) {
                 if (playerEntity.isSneaking() && ((playerEntity.totalExperience >= 2) || (playerEntity.experienceLevel > 0))) {
-                    //ClientSidePacketRegistry.INSTANCE.sendToServer(NetworkHandler.REPAIR_ITEM, new PacketByteBuf(Unpooled.buffer()));
+                    ClientSidePacketRegistry.INSTANCE.sendToServer(NetworkHandler.REPAIR_ITEM, new PacketByteBuf(Unpooled.buffer()));
 
                     return TypedActionResult.fail(stack);
                 }
             }
 
-            return TypedActionResult.pass(stack);
+           return TypedActionResult.pass(stack);
         });
     }
 }
