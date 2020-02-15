@@ -1,4 +1,4 @@
-BetterThanMending - Fabric Edition - 1.1.0
+BetterThanMending - Fabric Edition - 1.1.1
 =========
 [![ CurseForge](http://cf.way2muchnoise.eu/264738.svg)](https://minecraft.curseforge.com/projects/better-than-mending)
 
