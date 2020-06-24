@@ -4,6 +4,6 @@ BetterThanMending - Fabric Edition - 1.1.1
 
 A simple mod to improve Mending, allowing you to repair items by shift-right clicking and draining experience
 
-This mod is currently updated for `Minecraft 1.15.1` and `Fabric 0.4.27+build.286` with `Fabric Loader 0.7.3+build.176`
+This mod is currently updated for `Minecraft 1.16.1` and `Fabric 0.13.1+build.370-1.16` with `Fabric Loader 0.8.8+build.202`
 
 Please verify and report any issues!
