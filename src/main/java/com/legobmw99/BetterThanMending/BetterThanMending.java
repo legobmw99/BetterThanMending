@@ -26,16 +26,21 @@ public class BetterThanMending {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-
     @SubscribeEvent
     public void onItemUse(final PlayerInteractEvent.RightClickItem event) {
         PlayerEntity player = event.getPlayer();
-        ItemStack stack = event.getItemStack();
-
-        if (!player.world.isRemote()) {
+        if (!player.world.isRemote() && player.isSecondaryUseActive()) {
+            ItemStack stack = event.getItemStack();
             if (stack.isDamaged() && EnchantmentHelper.getEnchantmentLevel(Enchantments.MENDING, stack) > 0) {
-                if (player.isCrouching() && ((player.experienceTotal >= 2) || (player.experienceLevel > 0))) {
-                    stack.setDamage(stack.getDamage() - 4);
+                float ratio = stack.getXpRepairRatio();
+                int playerXP = Utilities.getPlayerXP(player);
+
+                if (playerXP >= 30 && stack.getDamage() >= 20 * ratio) {
+                    stack.setDamage(stack.getDamage() - (int) (20 * ratio));
+                    Utilities.addPlayerXP(player, -20);
+                    event.setCanceled(true);
+                } else if (playerXP >= 2) {
+                    stack.setDamage(stack.getDamage() - (int) (2 * ratio));
                     Utilities.addPlayerXP(player, -2);
                     event.setCanceled(true);
                 }
