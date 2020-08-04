@@ -12,14 +12,21 @@ public class BetterThanMending implements ModInitializer {
 
     @Override
     public void onInitialize() {
-
         UseItemCallback.EVENT.register((playerEntity, world, hand) -> {
-
             ItemStack stack = playerEntity.getStackInHand(hand);
-            if (!world.isClient()) {
+
+            if (!world.isClient() && playerEntity.isSneaking()) {
                 if (stack.isDamaged() && EnchantmentHelper.getLevel(Enchantments.MENDING, stack) > 0) {
-                    if (playerEntity.isSneaking() && ((playerEntity.totalExperience >= 2) || (playerEntity.experienceLevel > 0))) {
-                        stack.setDamage(stack.getDamage() - 4);
+                    float ratio = 2;
+                    int playerXP = Utilities.getPlayerXP(playerEntity);
+
+                    if (playerXP >= 30 && stack.getDamage() >= 20 * ratio) {
+                        stack.setDamage(stack.getDamage() - (int) (20 * ratio));
+                        Utilities.addPlayerXP(playerEntity, -20);
+
+                        return TypedActionResult.fail(stack);
+                    } else if (playerXP >= 2) {
+                        stack.setDamage(stack.getDamage() - (int) (2 * ratio));
                         Utilities.addPlayerXP(playerEntity, -2);
 
                         return TypedActionResult.fail(stack);
