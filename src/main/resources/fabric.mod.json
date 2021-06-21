@@ -18,8 +18,8 @@
     ]
   },
   "depends": {
-    "fabricloader": ">=0.7.2",
-    "fabric": ">=0.4.27"
+    "fabricloader": ">=0.11.6",
+    "fabric": ">=0.36.0+1.17"
   },
   "suggests": {
     "flamingo": "*"
