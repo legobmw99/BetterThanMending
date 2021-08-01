@@ -1,6 +1,6 @@
 package com.legobmw99.BetterThanMending.util;
 
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.world.entity.player.Player;
 
 public class Utilities {
 
@@ -13,20 +13,20 @@ public class Utilities {
      *
      */
 
-    public static int getPlayerXP(PlayerEntity player) {
-        return (int) (getExperienceForLevel(player.experienceLevel) + (player.experience * player.xpBarCap()));
+    public static int getPlayerXP(Player player) {
+        return (int) (getExperienceForLevel(player.experienceLevel) + (player.experienceProgress * player.getXpNeededForNextLevel()));
     }
 
-    public static void addPlayerXP(PlayerEntity player, int amount) {
+    public static void addPlayerXP(Player player, int amount) {
 
         int experience = getPlayerXP(player) + amount;
         if (experience < 0) {
             return;
         }
-        player.experienceTotal = experience;
+        player.totalExperience = experience;
         player.experienceLevel = getLevelForExperience(experience);
         int expForLevel = getExperienceForLevel(player.experienceLevel);
-        player.experience = (experience - expForLevel) / (float) player.xpBarCap();
+        player.experienceProgress = (experience - expForLevel) / (float) player.getXpNeededForNextLevel();
     }
 
     public static int getLevelForExperience(int experience) {
