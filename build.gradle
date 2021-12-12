@@ -1,6 +1,6 @@
 buildscript {
     repositories {
-        maven { url = 'https://files.minecraftforge.net/maven' }
+        maven { url = 'https://maven.minecraftforge.net/' }
         jcenter()
         mavenCentral()
     }
@@ -16,7 +16,7 @@ version = "${version}"
 group = "common.legobmw99.betterthanmending" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "BetterThanMending"
 
-sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = compileJava.targetCompatibility = '16' // Need this here so eclipse task generates correctly.
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
 
 minecraft {
