@@ -13,25 +13,25 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-    - name: Set up JDK 17
-      uses: actions/setup-java@v2
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-    - uses: actions/cache@v2
-      with:
-        path: |
-          ~/.gradle/caches
-        key: ${{ runner.os }}-gradle-forge-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
-        restore-keys: |
-          ${{ runner.os }}-gradle-forge-
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew build
-    - name: Stop gradle daemon
-      run: ./gradlew --stop
-    - uses: actions/upload-artifact@v2
-      with:
-        name: BTM Forge jar
-        path: build/libs/*.jar
+      - name: Set up JDK 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - uses: actions/cache@v2
+        with:
+          path: |
+            ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-forge-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-forge-
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+      - name: Build with Gradle
+        run: ./gradlew build
+      - name: Stop gradle daemon
+        run: ./gradlew --stop
+      - uses: actions/upload-artifact@v2
+        with:
+          name: BTM Forge jar
+          path: build/libs/*.jar
