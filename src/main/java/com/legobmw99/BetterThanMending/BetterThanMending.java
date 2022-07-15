@@ -4,7 +4,6 @@ import com.legobmw99.BetterThanMending.util.Utilities;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
@@ -29,10 +28,10 @@ public class BetterThanMending {
 
     @SubscribeEvent
     public void onItemUse(final PlayerInteractEvent.RightClickItem event) {
-        Player player = event.getPlayer();
+        Player player = event.getEntity();
         if (player.isSecondaryUseActive()) {
             ItemStack stack = event.getItemStack();
-            if (stack.isDamaged() && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MENDING, stack) > 0) {
+            if (stack.isDamaged() && stack.getEnchantmentLevel(Enchantments.MENDING) > 0) {
                 float ratio = stack.getXpRepairRatio();
                 int playerXP = Utilities.getPlayerXP(player);
 
