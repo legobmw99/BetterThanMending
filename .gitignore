@@ -22,3 +22,17 @@ build
 eclipse
 run
 runs
+
+
+# vscode
+
+.settings/
+.vscode/
+bin/
+.classpath
+.project
+
+# fabric
+
+run/
+logs/
