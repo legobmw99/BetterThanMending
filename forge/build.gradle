@@ -4,7 +4,7 @@ plugins {
     id 'net.minecraftforge.gradle' version '[6.0,6.2)'
 }
 base {
-    archivesName = "${mod_name}-${version}-forge"
+    archivesName = "${mod_name}-forge"
 }
 
 
@@ -62,12 +62,6 @@ dependencies {
 
 tasks.withType(JavaCompile).configureEach {
     source(project(":common").sourceSets.main.allSource)
-}
-tasks.withType(Javadoc).configureEach {
-    source(project(":common").sourceSets.main.allJava)
-}
-tasks.named("sourcesJar", Jar) {
-    from(project(":common").sourceSets.main.allSource)
 }
 
 processResources {
