@@ -26,7 +26,7 @@ public class BetterThanMending {
     public void onItemUse(final PlayerInteractEvent.RightClickItem event) {
         Player player = event.getEntity();
         ItemStack stack = event.getItemStack();
-        if (Common.onItemUse(player, stack, stack.getXpRepairRatio())){
+        if (Common.onItemUse(player, stack, stack.getXpRepairRatio())) {
             event.setCancellationResult(InteractionResult.SUCCESS);
             event.setCanceled(true);
         }
