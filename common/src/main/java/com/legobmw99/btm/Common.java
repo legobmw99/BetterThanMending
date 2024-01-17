@@ -7,10 +7,10 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.item.enchantment.Enchantments;
 
 public class Common {
-    public static final String MODID  = "betterthanmending";
+    public static final String MODID = "betterthanmending";
 
-    public static boolean onItemUse(Player player, ItemStack stack, float ratio){
-        if (player.isShiftKeyDown()){
+    public static boolean onItemUse(Player player, ItemStack stack, float ratio) {
+        if (player.isShiftKeyDown()) {
             if (stack.isDamaged() && EnchantmentHelper.getItemEnchantmentLevel(Enchantments.MENDING, stack) > 0) {
                 int playerXP = Utilities.getPlayerXP(player);
                 if (playerXP >= 30 && stack.getDamageValue() >= 20 * ratio) {
