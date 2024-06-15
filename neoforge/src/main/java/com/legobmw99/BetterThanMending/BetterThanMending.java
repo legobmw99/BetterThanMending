@@ -1,5 +1,6 @@
 package com.legobmw99.BetterThanMending;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -25,7 +26,10 @@ public class BetterThanMending {
     public void onItemUse(final PlayerInteractEvent.RightClickItem event) {
         Player player = event.getEntity();
         ItemStack stack = event.getItemStack();
-        if (Common.onItemUse(player, stack, stack.getXpRepairRatio())) {
+        if (Common.willMend(player, stack)) {
+            if (player instanceof ServerPlayer splayer) {
+                Common.doMend(splayer, stack);
+            }
             event.setCancellationResult(InteractionResult.SUCCESS);
             event.setCanceled(true);
         }

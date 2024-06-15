@@ -14,17 +14,17 @@ pluginManagement {
                 includeGroup("fabric-loom")
             }
         }
-        exclusiveContent {
-            forRepository {
-                maven {
-                    name = 'Forge'
-                    url = uri("https://maven.minecraftforge.net")
-                }
-            }
-            filter {
-                includeGroupAndSubgroups("net.minecraftforge")
-            }
-        }
+//        exclusiveContent {
+//            forRepository {
+//                maven {
+//                    name = 'Forge'
+//                    url = uri("https://maven.minecraftforge.net")
+//                }
+//            }
+//            filter {
+//                includeGroupAndSubgroups("net.minecraftforge")
+//            }
+//        }
         exclusiveContent {
             forRepository {
                 maven {
@@ -46,6 +46,7 @@ pluginManagement {
             }
             filter {
                 includeGroupAndSubgroups("org.spongepowered")
+                includeGroup("net.minecraftforge")
             }
         }
     }
@@ -59,5 +60,5 @@ plugins {
 rootProject.name = 'BetterThanMending'
 include("common")
 include("fabric")
-include("forge")
+//include("forge")
 include("neoforge")
