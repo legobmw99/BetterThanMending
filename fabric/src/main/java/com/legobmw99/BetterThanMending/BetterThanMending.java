@@ -15,7 +15,7 @@ public class BetterThanMending implements ModInitializer {
             ItemStack stack = player.getItemInHand(hand);
             if (Common.willMend(player, stack)) {
                 if (player instanceof ServerPlayer splayer) {
-                    Common.doMend(splayer, stack);
+                    Common.doMend(splayer, stack, 1.0f);
                 }
                 return InteractionResultHolder.success(stack);
             }

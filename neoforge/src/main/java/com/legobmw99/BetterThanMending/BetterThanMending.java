@@ -28,7 +28,7 @@ public class BetterThanMending {
         ItemStack stack = event.getItemStack();
         if (Common.willMend(player, stack)) {
             if (player instanceof ServerPlayer splayer) {
-                Common.doMend(splayer, stack);
+                Common.doMend(splayer, stack, stack.getXpRepairRatio());
             }
             event.setCancellationResult(InteractionResult.SUCCESS);
             event.setCanceled(true);

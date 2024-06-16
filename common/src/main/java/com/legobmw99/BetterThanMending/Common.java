@@ -15,20 +15,20 @@ public class Common {
         return (player.isShiftKeyDown() && stack.isDamaged() && EnchantmentHelper.has(stack, EnchantmentEffectComponents.REPAIR_WITH_XP) && Utilities.getPlayerXP(player) > 2);
     }
 
-    private static void repair(ServerPlayer player, ItemStack stack, int xp) {
-        int amt = EnchantmentHelper.modifyDurabilityToRepairFromXp(player.serverLevel(), stack, xp);
-        amt = Math.min(amt, stack.getDamageValue());
-        stack.setDamageValue(stack.getDamageValue() - amt);
+    private static void repair(ServerPlayer player, ItemStack stack, int xp, float ratio) {
+        int couldRepair = EnchantmentHelper.modifyDurabilityToRepairFromXp(player.serverLevel(), stack, (int) (xp * ratio));
+        int toRepair = Math.min(couldRepair, stack.getDamageValue());
+        stack.setDamageValue(stack.getDamageValue() - toRepair);
         Utilities.addPlayerXP(player, -xp);
     }
 
-    public static void doMend(ServerPlayer player, ItemStack stack) {
+    public static void doMend(ServerPlayer player, ItemStack stack, float ratio) {
         int playerXP = Utilities.getPlayerXP(player);
         if (playerXP >= 30 && stack.getDamageValue() >= 40) {
             // fast track
-            repair(player, stack, 20);
+            repair(player, stack, 20, ratio);
         } else if (playerXP >= 2) {
-            repair(player, stack, 2);
+            repair(player, stack, 2, ratio);
         }
     }
 }
