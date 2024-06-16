@@ -9,10 +9,11 @@ runs {
     }
     client {
         systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
+        workingDirectory '../runs/client'
     }
     server {
         systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
-        programArgument '--nogui'
+        workingDirectory '../runs/server'
     }
 
     gameTestServer {
