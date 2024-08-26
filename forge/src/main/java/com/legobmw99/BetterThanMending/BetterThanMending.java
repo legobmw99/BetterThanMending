@@ -16,8 +16,8 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 @Mod(Common.MODID)
 public class BetterThanMending {
 
-    public BetterThanMending() {
-        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::init);
+    public BetterThanMending(FMLJavaModLoadingContext ctx) {
+        ctx.getModEventBus().addListener(this::init);
     }
 
     public void init(final FMLCommonSetupEvent event) {
