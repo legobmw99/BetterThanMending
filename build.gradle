@@ -1,4 +1,40 @@
 plugins {
-    // Required for NeoGradle
-    id "org.jetbrains.gradle.plugin.idea-ext" version "1.1.7"
+    // see https://fabricmc.net/develop/ for new versions
+    id 'fabric-loom' version '1.7-SNAPSHOT' apply false
+    // see https://projects.neoforged.net/neoforged/moddevgradle for new versions
+    id 'net.neoforged.moddev' version '0.1.110' apply false
+    // build a single jar with multiple loaders supported
+    id "io.github.pacifistmc.forgix" version "1.2.9"
+}
+
+forgix {
+    group = "com.legobmw99.BetterThanMending"
+    mergedJarName = "${mod_name}-${version}.jar"
+    outputDir = "merged/build/libs"
+//    removeDuplicate "com.legobmw99.BetterThanMending.core.util"
+    fabric {
+        jarLocation = "build/libs/${mod_name}-fabric-${version}.jar"
+    }
+    neoforge {
+        jarLocation = "build/libs/${mod_name}-neoforge-${version}.jar"
+    }
+    forge {
+        jarLocation = "build/libs/${mod_name}-forge-${version}.jar"
+    }
+}
+
+tasks.register('build') { t ->
+    group = "build"
+    t.dependsOn(subprojects*.tasks*.findByName('build').minus(null))
+    t.finalizedBy(mergeJars)
+}
+
+tasks.register('clean') { t ->
+    group = "build"
+    t.dependsOn(subprojects*.tasks*.findByName('clean').minus(null))
+
+    def mergedFolder = file("merged")
+    if (mergedFolder.exists()) {
+        delete(mergedFolder)
+    }
 }

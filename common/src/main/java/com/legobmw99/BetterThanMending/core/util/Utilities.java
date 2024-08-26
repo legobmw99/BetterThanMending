@@ -1,4 +1,4 @@
-package com.legobmw99.BetterThanMending.util;
+package com.legobmw99.BetterThanMending.core.util;
 
 import net.minecraft.world.entity.player.Player;
 

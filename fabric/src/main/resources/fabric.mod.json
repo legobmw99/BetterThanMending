@@ -1,30 +1,32 @@
 {
-    "schemaVersion": 1,
-    "id": "${mod_id}",
-    "version": "${version}",
-    "name": "${mod_name}",
-    "description": "${description}",
-    "authors": [
-        "${mod_author}"
-    ],
-    "contact": {
-        "sources": "https://github.com/legobmw99/BetterThanMending/tree/fabric"
-    },
-    "license": "${license}",
-    "environment": "*",
-    "entrypoints": {
-        "main": [
-          "com.legobmw99.BetterThanMending.BetterThanMending"
-        ]
-    },
-    "mixins": [
-    ],
-    "depends": {
-        "fabricloader": ">=${fabric_loader_version}",
-        "fabric-api": "*",
-        "java": ">=${java_version}"
-    },
-    "suggests": {
-    }
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "${mod_name}",
+  "description": "${description}",
+  "authors": [
+    "${mod_author}"
+  ],
+  "icon": "logo.png",
+  "contact": {
+    "sources": "https://github.com/legobmw99/BetterThanMending",
+    "issues": "https://github.com/legobmw99/BetterThanMending/issues"
+  },
+  "license": "${license}",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.legobmw99.BetterThanMending.BetterThanMending"
+    ]
+  },
+  "mixins": [
+  ],
+  "depends": {
+    "fabricloader": ">=${fabric_loader_version}",
+    "fabric-api": "*",
+    "java": ">=${java_version}"
+  },
+  "suggests": {
+  }
 }
   
