@@ -9,7 +9,6 @@ forgix {
     mergedJarName = "betterthanmending-${version}.jar"
     outputDir = "merged/build/libs"
     // removeDuplicate "com.legobmw99.BetterThanMending.core"
-
     fabric {
         jarLocation = "build/libs/BetterThanMending-fabric-${version}.jar"
     }
@@ -19,5 +18,4 @@ forgix {
     forge {
         jarLocation = "build/libs/BetterThanMending-forge-${version}.jar"
     }
-
 }
