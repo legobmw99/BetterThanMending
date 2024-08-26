@@ -7,7 +7,7 @@ plugins {
 }
 
 forgix {
-    group = group
+    group = "${group}"
     mergedJarName = "${mod_name}-${version}.jar"
     outputDir = "merged/build/libs"
     // removeDuplicate "com.legobmw99.BetterThanMending.core"
