@@ -7,17 +7,17 @@ plugins {
 }
 
 forgix {
-    group = "com.legobmw99.BetterThanMending"
-    mergedJarName = "betterthanmending-${version}.jar"
+    group = group
+    mergedJarName = "${mod_name}-${version}.jar"
     outputDir = "merged/build/libs"
     // removeDuplicate "com.legobmw99.BetterThanMending.core"
     fabric {
-        jarLocation = "build/libs/BetterThanMending-fabric-${version}.jar"
+        jarLocation = "build/libs/${mod_name}-fabric-${version}.jar"
     }
     neoforge {
-        jarLocation = "build/libs/BetterThanMending-neoforge-${version}.jar"
+        jarLocation = "build/libs/${mod_name}-neoforge-${version}.jar"
     }
     forge {
-        jarLocation = "build/libs/BetterThanMending-forge-${version}.jar"
+        jarLocation = "build/libs/${mod_name}-forge-${version}.jar"
     }
 }
