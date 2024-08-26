@@ -29,6 +29,8 @@ jobs:
         run: chmod +x gradlew
       - name: Build with Gradle
         run: ./gradlew build
+      - name: Merge Jars
+        run: ./gradlew mergeJars
       - name: Stop gradle daemon
         run: ./gradlew --stop
       - uses: actions/upload-artifact@v4

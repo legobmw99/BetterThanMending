@@ -1,6 +1,6 @@
-package com.legobmw99.BetterThanMending;
+package com.legobmw99.BetterThanMending.core;
 
-import com.legobmw99.BetterThanMending.util.Utilities;
+import com.legobmw99.BetterThanMending.core.util.Utilities;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;

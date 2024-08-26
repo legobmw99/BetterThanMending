@@ -1,4 +1,23 @@
 plugins {
     // Required for NeoGradle
     id "org.jetbrains.gradle.plugin.idea-ext" version "1.1.7"
+    id "io.github.pacifistmc.forgix" version "1.2.9"
+}
+
+forgix {
+    group = "com.legobmw99.BetterThanMending"
+    mergedJarName = "betterthanmending-${version}.jar"
+    outputDir = "merged/build/libs"
+    // removeDuplicate "com.legobmw99.BetterThanMending.core"
+
+    fabric {
+        jarLocation = "build/libs/BetterThanMending-fabric-${version}.jar"
+    }
+    neoforge {
+        jarLocation = "build/libs/BetterThanMending-neoforge-${version}.jar"
+    }
+    forge {
+        jarLocation = "build/libs/BetterThanMending-forge-${version}.jar"
+    }
+
 }

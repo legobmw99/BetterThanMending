@@ -1,5 +1,6 @@
 package com.legobmw99.BetterThanMending;
 
+import com.legobmw99.BetterThanMending.core.Common;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;

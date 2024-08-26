@@ -1,5 +1,6 @@
 package com.legobmw99.BetterThanMending;
 
+import com.legobmw99.BetterThanMending.core.Common;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.resources.ResourceLocation;
