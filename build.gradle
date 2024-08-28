@@ -4,37 +4,45 @@ plugins {
     // see https://projects.neoforged.net/neoforged/moddevgradle for new versions
     id 'net.neoforged.moddev' version '0.1.110' apply false
     // build a single jar with multiple loaders supported
-    id "io.github.pacifistmc.forgix" version "1.2.9"
+    id "com.hypherionmc.modutils.modfusioner" version "1.0.+"
 }
 
-forgix {
-    group = "com.legobmw99.BetterThanMending"
+fusioner {
+    group = project.group
     mergedJarName = "${mod_name}-${version}.jar"
-    outputDir = "merged/build/libs"
-//    removeDuplicate "com.legobmw99.BetterThanMending.core.util"
+    outputDirectory = "merged/build/libs"
+    relocateDuplicate "com.legobmw99.BetterThanMending.core"
+
     fabric {
-        jarLocation = "build/libs/${mod_name}-fabric-${version}.jar"
+        projectName = "fabric"
+        inputTaskName = "jar"
     }
     neoforge {
-        jarLocation = "build/libs/${mod_name}-neoforge-${version}.jar"
+        projectName = "neoforge"
+        inputTaskName = "jar"
     }
     forge {
-        jarLocation = "build/libs/${mod_name}-forge-${version}.jar"
+        projectName = "forge"
+        inputTaskName = "jar"
     }
 }
 
 tasks.register('build') { t ->
-    group = "build"
-    t.dependsOn(subprojects*.tasks*.findByName('build').minus(null))
-    t.finalizedBy(mergeJars)
+   group = "build"
+   t.dependsOn(subprojects*.tasks*.findByName('build').minus(null))
+   t.finalizedBy(fusejars)
 }
 
 tasks.register('clean') { t ->
-    group = "build"
-    t.dependsOn(subprojects*.tasks*.findByName('clean').minus(null))
+   group = "build"
+   t.dependsOn(subprojects*.tasks*.findByName('clean').minus(null))
 
-    def mergedFolder = file("merged")
-    if (mergedFolder.exists()) {
-        delete(mergedFolder)
-    }
+   def mergedFolder = file("merged")
+   if (mergedFolder.exists()) {
+       delete(mergedFolder)
+   }
+   def buildFolder = file("build")
+   if (buildFolder.exists()) {
+       delete(buildFolder)
+   }
 }
