@@ -5,7 +5,7 @@ import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.event.player.UseItemCallback;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.item.ItemStack;
 
 public class BetterThanMending implements ModInitializer {
@@ -18,9 +18,9 @@ public class BetterThanMending implements ModInitializer {
                 if (player instanceof ServerPlayer splayer) {
                     Common.doMend(splayer, stack, 1.0f);
                 }
-                return InteractionResultHolder.success(stack);
+                return InteractionResult.SUCCESS;
             }
-            return InteractionResultHolder.pass(stack);
+            return InteractionResult.PASS;
         });
     }
 }
