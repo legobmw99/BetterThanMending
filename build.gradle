@@ -18,9 +18,9 @@ forgix {
     neoforge {
         jarLocation = "build/libs/${mod_name}-neoforge-${version}.jar"
     }
-//    forge {
-//        jarLocation = "build/libs/${mod_name}-forge-${version}.jar"
-//    }
+   forge {
+       jarLocation = "build/libs/${mod_name}-forge-${version}.jar"
+   }
 }
 
 tasks.register('build') { t ->
