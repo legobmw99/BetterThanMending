@@ -16,7 +16,7 @@ public class Common {
     }
 
     private static void repair(ServerPlayer player, ItemStack stack, int xp, float ratio) {
-        int couldRepair = EnchantmentHelper.modifyDurabilityToRepairFromXp(player.serverLevel(), stack, (int) (xp * ratio));
+        int couldRepair = EnchantmentHelper.modifyDurabilityToRepairFromXp(player.level(), stack, (int) (xp * ratio));
         int toRepair = Math.min(couldRepair, stack.getDamageValue());
         stack.setDamageValue(stack.getDamageValue() - toRepair);
         Utilities.addPlayerXP(player, -xp);

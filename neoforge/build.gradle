@@ -16,9 +16,11 @@ neoForge {
             ideName = "NeoForge ${it.name.capitalize()} (${project.path})" // Unify the run config names with fabric
         }
         client {
+            gameDirectory = project.file('../runs/client')
             client()
         }
         server {
+            gameDirectory = project.file('../runs/client')
             server()
         }
     }
