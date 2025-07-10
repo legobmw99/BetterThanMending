@@ -15,13 +15,13 @@ dependencies {
 
 loom {
     runs {
-        client {
+        fabricClient {
             client()
             setConfigName('Fabric Client')
             ideConfigGenerated(true)
             runDir('../runs/client')
         }
-        server {
+        fabricServer {
             server()
             setConfigName('Fabric Server')
             ideConfigGenerated(true)

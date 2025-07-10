@@ -19,7 +19,7 @@ minecraft {
             workingDirectory project.file('../runs/client')
             ideaModule "${rootProject.name}.${project.name}.main"
             property 'eventbus.api.strictRuntimeChecks', 'true'
-            taskName 'Client'
+            taskName 'forgeClient'
             mods {
                 modClientRun {
                     source sourceSets.main
@@ -31,7 +31,7 @@ minecraft {
             workingDirectory project.file('../runs/server')
             ideaModule "${rootProject.name}.${project.name}.main"
             property 'eventbus.api.strictRuntimeChecks', 'true'
-            taskName 'Server'
+            taskName 'forgeServer'
             mods {
                 modServerRun {
                     source sourceSets.main
