@@ -33,7 +33,7 @@ jobs:
         run: ./gradlew --stop
       - name: Copy jars
         run: cp ./**/build/libs/BetterThanMending*.jar .
-      - uses: actions/upload-artifact@v5
+      - uses: actions/upload-artifact@v6
         with:
           name: BTM Jars
           path: ./*.jar
